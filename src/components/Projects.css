@@ -63,6 +63,14 @@
   gap: 2.5rem;
   max-width: 1280px;
   margin: 0 auto;
+
+  /* 
+     CHOREOGRAPHY INTRO: 
+     Runs the identical blurred zoom-out landing sequence for 3 seconds.
+     Delayed by 0.6s so headers and filter navigation map out first.
+  */
+  opacity: 0;
+  animation: premiumProjectsIntro 3s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
 }
 
 /* =======================================================================================================================
@@ -258,4 +266,23 @@
 
 .projects__card:hover .project-card-icon {
   transform: scale(1.08);
+}
+
+/* =======================================================================================================================
+   NEW CINEMATIC ENTRY TIMERS
+   ======================================================================================================================= */
+@keyframes premiumProjectsIntro {
+  0% {
+    filter: blur(40px);
+    transform: scale(1.15) translateY(30px);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    filter: blur(0px);
+    transform: scale(1) translateY(0px);
+    opacity: 1;
+  }
 }

@@ -19,7 +19,7 @@
 
 /* ── Cinematic Background Layers ── */
 
-/* Dark vignette — deepens corners */
+/* Dark vignette — deepens corners (FIXED: 100__ corrected to 100%) */
 .hero::before {
   content: '';
   position: absolute;
@@ -27,7 +27,7 @@
   background: radial-gradient(
     ellipse 70% 70% at 50% 50%,
     transparent 30%,
-    rgba(0, 0, 0, 0.8) 100__
+    rgba(0, 0, 0, 0.8) 100%
   );
   z-index: 1;
   pointer-events: none;
@@ -196,7 +196,7 @@
 .hero__content {
   display: flex;
   flex-direction: column;
-  gap: 1.8rem; /* Slightly enhanced stack flow padding */
+  gap: 1.8rem;
 }
 
 /* Sword slash reveal */
@@ -219,16 +219,16 @@
 
 .hero__eyebrow-text {
   font-family: 'Poppins', sans-serif;
-  font-size: 0.85rem; /* Noticeably scaled up sub-label text */
+  font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.35em;
-  color: #f59e0b; /* Amber accent text color */
+  color: #f59e0b;
   text-transform: uppercase;
 }
 
 .hero__title {
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(3.2rem, 5.5vw, 4.8rem); /* Upgraded title layout widths */
+  font-size: clamp(3.2rem, 5.5vw, 4.8rem);
   font-weight: 900;
   line-height: 1.1;
   color: #ffffff;
@@ -238,7 +238,7 @@
 }
 
 .hero__title-accent {
-  color: #eab308; /* Vivid gold yellow key name color */
+  color: #eab308;
   display: block;
   position: relative;
 }
@@ -256,10 +256,10 @@
 
 .hero__subtitle {
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(1rem, 1.8vw, 1.3rem); /* Scaled up portfolio sub-title info labels */
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
   font-weight: 500;
   letter-spacing: 0.3em;
-  color: #94a3b8; /* Slate gray styling contrast */
+  color: #94a3b8;
   text-transform: uppercase;
   opacity: 0;
   animation: cinematicFadeUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.75s forwards;
@@ -267,7 +267,7 @@
 
 .hero__description {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.15rem; /* Upgraded font sizing for extreme descriptive readability */
+  font-size: 1.15rem;
   line-height: 1.85;
   color: #94a3b8;
   max-width: 520px;
@@ -289,9 +289,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.8rem;
-  padding: 1rem 2.2rem; /* Enhanced comfort internal bounds */
+  padding: 1rem 2.2rem;
   font-family: 'Poppins', sans-serif;
-  font-size: 0.85rem; /* Clear larger actionable fonts */
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -382,7 +382,14 @@
   border: 1px solid #242118;
   backdrop-filter: blur(8px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(234, 179, 8, 0.02);
-  animation: floatImage 6s ease-in-out infinite;
+  
+  /* 
+     MODIFIED: Run the dramatic 3s blurred zoom-out first. 
+     Then, start the looping float animation exactly at the 3s mark.
+  */
+  animation: 
+    premiumIntro 3s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+    floatImage 6s ease-in-out infinite 3s;
 }
 
 /* ── Gradient Border Glow ── */
@@ -448,7 +455,8 @@
   height: 45px;
   background: radial-gradient(ellipse, rgba(0, 0, 0, 0.55) 0%, transparent 70%);
   filter: blur(14px);
-  animation: floatShadow 6s ease-in-out infinite;
+  /* Delayed by 3s to stay synchronized with the image frame intro landing */
+  animation: floatShadow 6s ease-in-out infinite 3s;
 }
 
 /* ── Decorative Floating Accent Badge ── */
@@ -463,7 +471,8 @@
   border: 1px solid rgba(234, 179, 8, 0.2);
   backdrop-filter: blur(8px);
   z-index: 5;
-  animation: floatAccent 5s ease-in-out infinite;
+  /* Delayed by 3s to stay synchronized with the image frame intro landing */
+  animation: floatAccent 5s ease-in-out infinite 3s;
 }
 
 /* ── Tiny Glow Orb ── */
@@ -479,12 +488,6 @@
   background: #eab308;
   box-shadow: 0 0 10px #eab308, 0 0 25px rgba(234, 179, 8, 0.6);
 }
-
-@keyframes floatAccent {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-8px); }
-}
-
 
 /* ── Scroll Indicator ── */
 .hero__scroll {
@@ -504,7 +507,7 @@
 
 .hero__scroll-text {
   font-family: 'Poppins', sans-serif;
-  font-size: 0.75rem; /* Enhanced bottom labels readability size */
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.3em;
   color: #94a3b8;
@@ -529,7 +532,7 @@
   font-family: 'Poppins', sans-serif;
   font-size: 7rem;
   font-weight: 900;
-  color: rgba(234, 179, 8, 0.02); /* Converted texture highlights to fine yellow dust lines */
+  color: rgba(234, 179, 8, 0.02);
   letter-spacing: 0.1em;
   user-select: none;
   pointer-events: none;
@@ -551,34 +554,65 @@
   color: rgba(245, 158, 11, 0.025);
 }
 
-@keyframes kanjiFloat {
-  0%, 100% { transform: translateY(0) rotate(-2deg); }
-  50%       { transform: translateY(-20px) rotate(2deg); }
+/* ============================================================
+   CORE ANIMATION TIMERS & KEYFRAMES
+   ============================================================ */
+
+/* ── MODIFIED: Cinematic Landing Blur & Zoom Out ── */
+@keyframes premiumIntro {
+  0% {
+    filter: blur(40px);
+    transform: scale(1.4) translateY(20px);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    filter: blur(0px);
+    transform: scale(1) translateY(0px);
+    opacity: 1;
+  }
 }
 
-/* ── Animation Timers ── */
-@keyframes cinematicFadeUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes slashReveal {
-  from { opacity: 0; transform: translateX(-20px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-@keyframes lineSlash {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
 @keyframes floatImage {
   0%, 100% { transform: translateY(0px); }
   50%       { transform: translateY(-18px); }
 }
+
 @keyframes floatShadow {
   0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.5; }
   50%       { transform: translateX(-50%) scale(0.85); opacity: 0.3; }
 }
 
-/* ── Responsive Viewports ── */
+@keyframes floatAccent {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes cinematicFadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slashReveal {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes lineSlash {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes kanjiFloat {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50%       { transform: translateY(-20px) rotate(2deg); }
+}
+
+/* ============================================================
+   RESPONSIVE VIEWPORTS
+   ============================================================ */
 @media (max-width: 1024px) {
   .hero { padding: 0 2.5rem; }
   .hero__inner { gap: 3rem; }

@@ -1,0 +1,446 @@
+/* ============================================================
+   FOOTER.CSS — Cyber Yellow Premium HUD Style
+   Consolidated cinematic footer with interactive gold metrics
+   ============================================================ */
+
+/* ── Footer Base ── */
+.footer {
+  position: relative;
+  background: #0d0c08; /* Deep dark base matching qualifications theme */
+  overflow: hidden;
+  border-top: 1px solid rgba(234, 179, 8, 0.08); /* Gold accent border line */
+}
+
+/* Deep shadow from top — separates cleanly from contact section nodes */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Floating Atmospheric Particles ── */
+.footer__particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.footer__particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(234, 179, 8, 0.25); /* Gold floating ember glow points */
+  border-radius: 50%;
+  animation: particleFloat linear infinite;
+}
+
+.footer__particle:nth-child(1)  { left: 10%; bottom: 0; animation-duration: 14s; animation-delay: 0s; }
+.footer__particle:nth-child(2)  { left: 22%; bottom: 0; animation-duration: 18s; animation-delay: -3s; width: 1px; height: 1px; }
+.footer__particle:nth-child(3)  { left: 35%; bottom: 0; animation-duration: 12s; animation-delay: -6s; }
+.footer__particle:nth-child(4)  { left: 48%; bottom: 0; animation-duration: 20s; animation-delay: -1s; width: 3px; height: 3px; opacity: 0.2; }
+.footer__particle:nth-child(5)  { left: 60%; bottom: 0; animation-duration: 16s; animation-delay: -9s; }
+.footer__particle:nth-child(6)  { left: 72%; bottom: 0; animation-duration: 22s; animation-delay: -4s; width: 1px; height: 1px; }
+.footer__particle:nth-child(7)  { left: 83%; bottom: 0; animation-duration: 15s; animation-delay: -7s; }
+.footer__particle:nth-child(8)  { left: 92%; bottom: 0; animation-duration: 19s; animation-delay: -2s; opacity: 0.15; }
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-120px) translateX(25px);
+    opacity: 0;
+  }
+}
+
+/* ── Upper Footer — Logo + Nav + Social ── */
+.footer__upper {
+  position: relative;
+  z-index: 1;
+  padding: 4rem 4rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Footer Brand ── */
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.footer__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.footer__logo-mark {
+  width: 26px;
+  height: 26px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Framing logic matching timeline diamond nodes */
+.footer__logo-mark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(234, 179, 8, 0.4);
+  transform: rotate(45deg);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.footer__logo-mark::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  background: #eab308; /* Branding core gold */
+  transform: rotate(45deg);
+  opacity: 0.7;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.footer__logo:hover .footer__logo-mark::before {
+  border-color: #eab308;
+  box-shadow: 0 0 10px rgba(234, 179, 8, 0.4);
+}
+
+.footer__logo:hover .footer__logo-mark::after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1.05);
+}
+
+.footer__logo-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer__logo:hover .footer__logo-text {
+  color: #eab308;
+}
+
+.footer__tagline {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #94a3b8;
+  opacity: 0.7;
+  max-width: 240px;
+}
+
+/* ── Footer Nav — Center Columns ── */
+.footer__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: center;
+  padding-top: 0.3rem;
+}
+
+.footer__nav-link {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.footer__nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: #eab308;
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.footer__nav-link:hover {
+  color: #eab308;
+}
+
+.footer__nav-link:hover::before {
+  width: 100%;
+}
+
+/* ── Social System Buttons — Right Panel ── */
+.footer__social {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: flex-end;
+}
+
+.footer__social-heading {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #f59e0b;
+  opacity: 0.8;
+}
+
+.footer__social-links {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.footer__social-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #242118;
+  background: #1f1d16;
+  color: #94a3b8;
+  border-radius: 4px;
+  text-decoration: none;
+  overflow: hidden;
+  transition: border-color 0.3s ease, color 0.3s ease, transform 0.3s ease, background 0.3s ease;
+}
+
+/* Interactive tactical overlay grid slice on hover */
+.footer__social-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(234, 179, 8, 0.08);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.footer__social-link:hover::before {
+  transform: scaleY(1);
+}
+
+.footer__social-link:hover {
+  border-color: #eab308;
+  color: #fef08a;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.footer__social-link svg {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Dynamic Divider Line ── */
+.footer__divider {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+.footer__divider-line {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(234, 179, 8, 0.15) 20%,
+    rgba(234, 179, 8, 0.15) 80%,
+    transparent
+  );
+  position: relative;
+}
+
+/* Center diamond frame component on footer timeline axis path */
+.footer__divider-line::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 6px;
+  height: 6px;
+  background: #0d0c08;
+  border: 1px solid rgba(234, 179, 8, 0.6);
+}
+
+/* ── Lower Footer Meta Row ── */
+.footer__lower {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 4rem 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer__copyright {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+.footer__copyright span {
+  color: #eab308;
+  font-weight: 600;
+}
+
+/* Made with framework container tracking line */
+.footer__made-with {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  opacity: 0.7;
+}
+
+.footer__made-with svg {
+  width: 12px;
+  height: 12px;
+  color: #fca5a5; /* Soft crimson pulse anchor tag */
+  animation: heartbeat 2.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50%       { transform: scale(1.25); opacity: 1; filter: drop-shadow(0 0 4px rgba(252,165,165,0.6)); }
+}
+
+/* ── Back to Top Platform Trigger ── */
+.footer__back-to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.footer__back-to-top:hover {
+  color: #eab308;
+}
+
+.footer__back-to-top svg {
+  width: 14px;
+  height: 14px;
+  color: #eab308;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.footer__back-to-top:hover svg {
+  transform: translateY(-3px);
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN BREAKPOINT LOGIC
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .footer__upper {
+    padding: 3rem 2.5rem 2.5rem;
+  }
+
+  .footer__divider,
+  .footer__lower {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer__upper {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 3rem 1.5rem 2rem;
+    text-align: center;
+  }
+
+  .footer__brand,
+  .footer__social {
+    align-items: center;
+  }
+
+  .footer__logo {
+    justify-content: center;
+  }
+
+  .footer__tagline {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .footer__divider {
+    padding: 0 1.5rem;
+  }
+
+  .footer__lower {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.5rem 1.5rem 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer__social-links {
+    gap: 0.5rem;
+  }
+
+  .footer__copyright,
+  .footer__made-with,
+  .footer__back-to-top {
+    font-size: 0.8rem;
+  }
+}

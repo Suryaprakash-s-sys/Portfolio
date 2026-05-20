@@ -1,0 +1,351 @@
+/* ============================================================
+   SERVICES.CSS — Shinobi Portfolio
+   Ninja Abilities | Ink hover effects | Stealth animations
+   ============================================================ */
+
+/* ── Section Base ── */
+.services {
+  position: relative;
+  padding: 8rem 4rem;
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+/* Dark vertical side vignettes */
+.services::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(0,0,0,0.3) 0%, transparent 15%),
+    linear-gradient(to left, rgba(0,0,0,0.3) 0%, transparent 15%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Section top border */
+.services::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(201, 162, 39, 0.18) 40%,
+    rgba(201, 162, 39, 0.18) 60%,
+    transparent
+  );
+  z-index: 1;
+}
+
+/* ── Section Header ── */
+.services__header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.services__section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.services__section-label::before,
+.services__section-label::after {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: var(--accent-gold);
+  opacity: 0.5;
+}
+
+.services__title {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem;
+}
+
+.services__title span {
+  color: var(--accent-gold);
+}
+
+.services__intro {
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0.8rem auto 0;
+}
+
+/* ── Cards Grid ── */
+.services__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── Service Card — Ninja Ability Scroll ── */
+.services__card {
+  position: relative;
+  padding: 2.8rem 2.2rem;
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+  cursor: default;
+  transition: border-color var(--transition-mid),
+              transform var(--transition-mid),
+              background var(--transition-mid);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.services__card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s ease,
+              transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color var(--transition-mid),
+              background var(--transition-mid);
+}
+
+.services__card:hover {
+  border-color: rgba(201, 162, 39, 0.2);
+  background: rgba(24, 24, 24, 0.8);
+  transform: translateY(-6px);
+}
+
+/* Ink splash background — reveals on hover */
+.services__card::before {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(201, 162, 39, 0.06) 0%,
+    rgba(201, 162, 39, 0.02) 50%,
+    transparent 70%
+  );
+  transition: bottom var(--transition-slow),
+              width var(--transition-slow),
+              height var(--transition-slow),
+              opacity var(--transition-mid);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.services__card:hover::before {
+  bottom: -40px;
+  width: 300px;
+  height: 300px;
+  opacity: 1;
+}
+
+/* Left vertical accent line — stealth slash */
+.services__card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 30%;
+  width: 1px;
+  height: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--accent-gold),
+    transparent
+  );
+  transition: height 0.5s ease, top 0.5s ease;
+}
+
+.services__card:hover::after {
+  height: 40%;
+  top: 30%;
+}
+
+/* ── Icon Container ── */
+.services__card-icon-wrap {
+  position: relative;
+  z-index: 1;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Diamond shape around icon */
+.services__card-icon-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(201, 162, 39, 0.25);
+  transform: rotate(45deg);
+  transition: border-color var(--transition-mid),
+              transform var(--transition-slow);
+}
+
+.services__card:hover .services__card-icon-wrap::before {
+  border-color: rgba(201, 162, 39, 0.5);
+  transform: rotate(90deg);
+}
+
+.services__card-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--accent-gold);
+  opacity: 0.75;
+  transition: opacity var(--transition-mid),
+              transform var(--transition-mid);
+  position: relative;
+  z-index: 1;
+}
+
+.services__card:hover .services__card-icon {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* ── Number Badge — mission rank ── */
+.services__card-number {
+  position: absolute;
+  top: 1.8rem;
+  right: 2rem;
+  font-family: 'Cinzel', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: rgba(201, 162, 39, 0.07);
+  line-height: 1;
+  transition: color var(--transition-mid);
+  z-index: 0;
+}
+
+.services__card:hover .services__card-number {
+  color: rgba(201, 162, 39, 0.12);
+}
+
+/* ── Card Text ── */
+.services__card-title {
+  position: relative;
+  z-index: 1;
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  margin: 0 0 0.8rem;
+  line-height: 1.3;
+  transition: color var(--transition-fast);
+}
+
+.services__card:hover .services__card-title {
+  color: var(--accent-gold);
+}
+
+.services__card-description {
+  position: relative;
+  z-index: 1;
+  font-family: 'EB Garamond', serif;
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin: 0 0 1.5rem;
+}
+
+/* ── Feature List ── */
+.services__card-features {
+  position: relative;
+  z-index: 1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.services__card-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-family: 'EB Garamond', serif;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Kunai marker */
+.services__card-feature::before {
+  content: '›';
+  color: var(--accent-gold);
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  opacity: 0.7;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.services__card:hover .services__card-feature::before {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+/* ── Stagger delays ── */
+.services__card:nth-child(2) { transition-delay: 0.1s; }
+.services__card:nth-child(3) { transition-delay: 0.2s; }
+.services__card:nth-child(4) { transition-delay: 0.05s; }
+.services__card:nth-child(5) { transition-delay: 0.15s; }
+.services__card:nth-child(6) { transition-delay: 0.25s; }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .services {
+    padding: 6rem 2.5rem;
+  }
+
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .services {
+    padding: 5rem 1.5rem;
+  }
+
+  .services__grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services__card {
+    padding: 2rem 1.5rem;
+  }
+}

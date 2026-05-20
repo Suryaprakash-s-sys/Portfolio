@@ -1,0 +1,473 @@
+/* ============================================================
+   QUALIFICATIONS.CSS — Cyber Yellow Timeline Style
+   Same cinematic experience timeline styling
+   ============================================================ */
+
+/* ── Section Base ── */
+.qualifications {
+  position: relative;
+  padding: 8rem 4rem;
+  background: #0d0c08; /* Dark base matching the project/skills theme */
+  overflow: hidden;
+}
+
+/* Fog overlay */
+.qualifications::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.4),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Top border */
+.qualifications::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(234, 179, 8, 0.2) 40%,
+    rgba(234, 179, 8, 0.2) 60%,
+    transparent
+  );
+  z-index: 1;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.qualifications__header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.qualifications__section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem; /* Scaled up text */
+  font-weight: 700;    /* Increased weight */
+  letter-spacing: 0.35em;
+  color: #f59e0b; /* Amber/Yellow branding core */
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+.qualifications__section-label::before,
+.qualifications__section-label::after {
+  content: '';
+  width: 40px;
+  height: 1.5px;
+  background: #eab308;
+  opacity: 0.5;
+}
+
+.qualifications__title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem); /* Match high readability font-size scale */
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.qualifications__title span {
+  color: #eab308; /* Vibrant golden yellow focus text */
+}
+
+/* ============================================================
+   TIMELINE
+   ============================================================ */
+
+.qualifications__timeline {
+  position: relative;
+  z-index: 1;
+  max-width: 950px;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+}
+
+/* Vertical path */
+.qualifications__path {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(234, 179, 8, 0.3) 8%,
+    rgba(234, 179, 8, 0.3) 92%,
+    transparent
+  );
+  z-index: 0;
+}
+
+/* Animated glow */
+.qualifications__path::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: 5px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(234, 179, 8, 0.8),
+    transparent
+  );
+  animation: qualificationsGlow 4s ease-in-out infinite;
+}
+
+@keyframes qualificationsGlow {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* ============================================================
+   ITEMS
+   ============================================================ */
+
+.qualifications__item {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  align-items: start;
+  margin-bottom: 4rem;
+}
+
+.qualifications__item:last-child {
+  margin-bottom: 0;
+}
+
+/* Alternate layout */
+.qualifications__item--left .qualifications__card {
+  grid-column: 1;
+}
+
+.qualifications__item--left .qualifications__node {
+  grid-column: 2;
+}
+
+.qualifications__item--right .qualifications__card {
+  grid-column: 3;
+}
+
+.qualifications__item--right .qualifications__node {
+  grid-column: 2;
+}
+
+/* ============================================================
+   NODE
+   ============================================================ */
+
+.qualifications__node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1.8rem;
+}
+
+.qualifications__node-diamond {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  background: #0d0c08;
+  border: 1px solid rgba(234, 179, 8, 0.5);
+  transform: rotate(45deg);
+  transition: all 0.3s ease;
+}
+
+.qualifications__node-diamond::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  background: #eab308;
+  opacity: 0.8;
+}
+
+.qualifications__item:hover .qualifications__node-diamond {
+  border-color: #eab308;
+  box-shadow:
+    0 0 12px rgba(234, 179, 8, 0.5),
+    0 0 24px rgba(234, 179, 8, 0.25);
+}
+
+/* ============================================================
+   CARD
+   ============================================================ */
+
+.qualifications__card {
+  position: relative;
+  padding: 2.2rem 2.5rem; /* Enhanced comfort internal bounds */
+  background: rgba(20, 19, 14, 0.8); /* Opaque warm dark card layout fill */
+  border: 1px solid #242118;
+
+  opacity: 0;
+  transform: translateX(-30px);
+
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.qualifications__item--right .qualifications__card {
+  transform: translateX(30px);
+}
+
+.qualifications__card.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.qualifications__card:hover {
+  background: rgba(234, 179, 8, 0.03);
+  border-color: #4a4229;
+}
+
+/* Slash indicator */
+.qualifications__item--left .qualifications__card::after {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  right: -1px;
+  width: 2px;
+  height: 0;
+  background: #eab308;
+  transition: height 0.5s ease;
+}
+
+.qualifications__item--right .qualifications__card::after {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  left: -1px;
+  width: 2px;
+  height: 0;
+  background: #eab308;
+  transition: height 0.5s ease;
+}
+
+.qualifications__card:hover::after {
+  height: 40%;
+}
+
+/* ============================================================
+   CONTENT
+   ============================================================ */
+
+.qualifications__item-period {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem; /* Noticeably increased letter text sizes */
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+
+  color: #f59e0b;
+  opacity: 0.9;
+
+  margin-bottom: 1rem;
+}
+
+.qualifications__item-period::before {
+  content: '';
+  width: 20px;
+  height: 1.5px;
+  background: currentColor;
+}
+
+.qualifications__item-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.4rem; /* Scaled up headings */
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.4rem;
+  line-height: 1.4;
+}
+
+.qualifications__item-institution {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.15rem; /* Upgraded text height */
+  font-weight: 600;
+  color: #eab308;
+  margin-bottom: 1.2rem;
+}
+
+.qualifications__item-details {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem; /* Highly readable body descriptions */
+  line-height: 1.7;
+  color: #94a3b8;
+  margin-bottom: 1.5rem;
+}
+
+/* ============================================================
+   TAGS
+   ============================================================ */
+
+.qualifications__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.qualifications__tag {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem; /* Enhanced font layout visibility */
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  padding: 0.4rem 0.9rem;
+
+  border: 1px solid #3a3421;
+  color: #94a3b8;
+  background: #1f1d16;
+
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.qualifications__tag:hover {
+  border-color: #eab308;
+  color: #fef08a;
+  background: rgba(234, 179, 8, 0.08);
+}
+
+/* ============================================================
+   GRADE BADGE
+   ============================================================ */
+
+.qualifications__item-grade {
+  position: absolute;
+  top: 1.8rem;
+  right: 1.8rem;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem; /* Scaled up card marks display box text */
+  font-weight: 700;
+  letter-spacing: 0.15em;
+
+  color: #eab308;
+
+  padding: 0.4rem 0.9rem;
+  border-radius: 4px;
+
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  background: #1f1d16;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .qualifications {
+    padding: 6rem 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .qualifications {
+    padding: 5rem 1.5rem;
+  }
+
+  .qualifications__path {
+    left: 20px;
+  }
+
+  .qualifications__timeline {
+    padding-left: 48px;
+  }
+
+  .qualifications__item {
+    grid-template-columns: 1fr;
+    margin-bottom: 2.5rem;
+  }
+
+  .qualifications__node {
+    display: none;
+  }
+
+  .qualifications__card {
+    transform: none !important;
+    border-left: 2px solid rgba(234, 179, 8, 0.4);
+  }
+
+  .qualifications__card.visible {
+    transform: none !important;
+  }
+
+  .qualifications__card::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 1.5rem;
+
+    width: 8px;
+    height: 8px;
+
+    background: #eab308;
+    border-radius: 50%;
+    opacity: 0.8;
+  }
+
+  .qualifications__card::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .qualifications__card {
+    padding: 1.8rem 1.5rem;
+  }
+
+  .qualifications__item-title {
+    font-size: 1.15rem;
+  }
+
+  .qualifications__item-grade {
+    position: static;
+    display: inline-block;
+    margin-top: 1.2rem;
+  }
+}

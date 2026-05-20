@@ -1,0 +1,435 @@
+/* ============================================================
+   NAVBAR.CSS — Shinobi Portfolio
+   Floating dark navbar | Katana hover underline | Gold borders
+   ============================================================ */
+
+/* ── Variables ── */
+:root {
+  --bg-primary:      #111111;
+  --bg-secondary:    #1b1b1b;
+  --bg-card:         #181818;
+  --text-primary:    #f5f5f5;
+  --text-secondary:  #bdbdbd;
+  --accent-gold:     #c9a227;
+  --accent-red:      #8b0000;
+  --smoke:           rgba(255, 255, 255, 0.05);
+  --nav-height:      72px;
+  --transition-slow: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-mid:  0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-fast: 0.18s ease;
+}
+
+/* ── Base Navbar Container ── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4rem;
+  background: transparent;
+  transition: background var(--transition-mid),
+              border-bottom var(--transition-mid),
+              box-shadow var(--transition-mid);
+  box-sizing: border-box;
+}
+
+/* ── Scrolled State — dark veil descends ── */
+.navbar.scrolled {
+  background: rgba(17, 17, 17, 0.92);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.18);
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.6),
+              0 1px 0 rgba(201, 162, 39, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── Logo / Clan Mark ── */
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.navbar__logo-symbol {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar__logo-symbol::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(201, 162, 39, 0.5);
+  transform: rotate(45deg);
+  transition: border-color var(--transition-mid),
+              transform var(--transition-slow);
+}
+
+.navbar__logo-symbol::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  background: var(--accent-gold);
+  transform: rotate(45deg);
+  transition: transform var(--transition-slow),
+              opacity var(--transition-mid);
+  opacity: 0.85;
+}
+
+.navbar__logo:hover .navbar__logo-symbol::before {
+  transform: rotate(90deg);
+  border-color: var(--accent-gold);
+}
+
+.navbar__logo:hover .navbar__logo-symbol::after {
+  transform: rotate(135deg);
+  opacity: 1;
+}
+
+.navbar__logo-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  transition: color var(--transition-fast);
+}
+
+.navbar__logo-text span {
+  color: var(--accent-gold);
+}
+
+.navbar__logo:hover .navbar__logo-text {
+  color: var(--accent-gold);
+}
+
+/* ── Navigation Links Link strip ── */
+.navbar__nav {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;          /* Uniform row gap locks spacing, stopping label smash */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar__nav-item {
+  position: relative;
+  display: block;
+}
+
+.navbar__nav-link {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.35rem 0;
+  transition: color var(--transition-mid);
+  position: relative;
+  white-space: nowrap;  /* Prevents labels from wrapping vertically onto new rows */
+}
+
+/* Katana slash underline — slides in from left */
+.navbar__nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent-gold) 30%,
+    var(--accent-gold) 70%,
+    transparent 100%
+  );
+  transition: width var(--transition-mid);
+  transform-origin: left center;
+}
+
+/* Gold dot marker — appears at start of slash */
+.navbar__nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2.5px;
+  left: -4px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  opacity: 0;
+  transition: opacity var(--transition-fast) 0.05s;
+}
+
+.navbar__nav-link:hover,
+.navbar__nav-link.active {
+  color: var(--text-primary);
+}
+
+.navbar__nav-link:hover::before,
+.navbar__nav-link.active::before {
+  width: 100%;
+}
+
+.navbar__nav-link:hover::after,
+.navbar__nav-link.active::after {
+  opacity: 1;
+}
+
+.navbar__nav-link.active {
+  color: var(--accent-gold);
+}
+
+.navbar__nav-link.active::before {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent-gold) 20%,
+    #e8c04a 50%,
+    var(--accent-gold) 80%,
+    transparent 100%
+  );
+}
+
+/* ── CTA Button — Resume ── */
+.navbar__cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.4rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  text-decoration: none;
+  border: 1px solid rgba(201, 162, 39, 0.4);
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+  transition: color var(--transition-mid),
+              border-color var(--transition-mid);
+  flex-shrink: 0;
+}
+
+/* Slash fill animation on hover */
+.navbar__cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--accent-gold);
+  transition: left var(--transition-mid);
+  z-index: 0;
+}
+
+.navbar__cta:hover::before {
+  left: 0;
+}
+
+.navbar__cta:hover {
+  color: #111111;
+  border-color: var(--accent-gold);
+}
+
+.navbar__cta span {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Hamburger Menu — Mobile ── */
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.navbar__hamburger-bar {
+  display: block;
+  width: 26px;
+  height: 1px;
+  background: var(--text-secondary);
+  transition: transform var(--transition-mid),
+              opacity var(--transition-fast),
+              background var(--transition-fast),
+              width var(--transition-mid);
+  transform-origin: left center;
+}
+
+.navbar__hamburger:hover .navbar__hamburger-bar {
+  background: var(--accent-gold);
+}
+
+/* Katana-open animation */
+.navbar__hamburger.open .navbar__hamburger-bar:nth-child(1) {
+  transform: rotate(45deg) translateY(-1px);
+  width: 28px;
+}
+
+.navbar__hamburger.open .navbar__hamburger-bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.navbar__hamburger.open .navbar__hamburger-bar:nth-child(3) {
+  transform: rotate(-45deg) translateY(1px);
+  width: 28px;
+}
+
+/* ── Mobile Drawer ── */
+.navbar__mobile-menu {
+  display: none;
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  width: 100%;
+  background: rgba(17, 17, 17, 0.97);
+  border-top: 1px solid rgba(201, 162, 39, 0.15);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.1);
+  padding: 2rem 2rem 2.5rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transform: translateY(-8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform var(--transition-mid),
+              opacity var(--transition-mid);
+  z-index: 999;
+}
+
+.navbar__mobile-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.navbar__mobile-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.navbar__mobile-nav-item {
+  border-bottom: 1px solid rgba(201, 162, 39, 0.08);
+}
+
+.navbar__mobile-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast),
+              padding-left var(--transition-mid);
+}
+
+.navbar__mobile-nav-link::after {
+  content: '→';
+  font-size: 0.75rem;
+  color: var(--accent-gold);
+  opacity: 0;
+  transition: opacity var(--transition-fast),
+              transform var(--transition-mid);
+  transform: translateX(-6px);
+}
+
+.navbar__mobile-nav-link:hover,
+.navbar__mobile-nav-link.active {
+  color: var(--accent-gold);
+  padding-left: 0.5rem;
+}
+
+.navbar__mobile-nav-link:hover::after,
+.navbar__mobile-nav-link.active::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Thin gold line — progress indicator ── */
+.navbar__progress-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 0%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-gold) 30%,
+    #e8c04a 70%,
+    transparent
+  );
+  transition: width 0.1s linear;
+}
+
+/* ── Responsive Viewports ── */
+@media (max-width: 1120px) {
+  .navbar {
+    padding: 0 2rem;
+  }
+  .navbar__nav {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 920px) {
+  /* Safely triggers mobile breakpoint before links run out of room */
+  .navbar__nav,
+  .navbar__cta {
+    display: none;
+  }
+
+  .navbar__hamburger {
+    display: flex;
+  }
+
+  .navbar__mobile-menu {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0 1rem;
+  }
+
+  .navbar__logo-text {
+    font-size: 0.9rem;
+  }
+}

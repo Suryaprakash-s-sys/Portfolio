@@ -1,0 +1,445 @@
+/* ============================================================
+   ABOUT.CSS — Cyber Yellow Compact Terminal Layout
+   Inherits the premium warm-dark timeline ecosystem
+   ============================================================ */
+
+/* ── Section Base ── */
+.about {
+  position: relative;
+  padding: 6rem 4rem;
+  background: #0d0c08; /* Dark base matching qualifications theme */
+  overflow: hidden;
+}
+
+/* Fog overlay matching the timeline design */
+.about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.4),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Top border boundary marker */
+.about::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(234, 179, 8, 0.2) 40%,
+    rgba(234, 179, 8, 0.2) 60%,
+    transparent
+  );
+  z-index: 1;
+}
+
+.about__scroll-border {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.about__header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.about__section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  color: #f59e0b; /* Core Amber Branding color */
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.about__section-label::before,
+.about__section-label::after {
+  content: '';
+  width: 30px;
+  height: 1.5px;
+  background: #eab308;
+  opacity: 0.5;
+}
+
+.about__title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.15;
+}
+
+.about__title span {
+  color: #eab308; /* Focus text accent gold */
+}
+
+.about__terminal-status {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #94a3b8;
+  margin-top: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+.terminal-prompt {
+  color: #eab308;
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 6px;
+  height: 14px;
+  background-color: #eab308;
+  animation: aboutCursorBlink 1.2s infinite ease-in-out;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+@keyframes aboutCursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.about__header-rule {
+  max-width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(234, 179, 8, 0.4), transparent);
+  margin: 1.2rem auto 0 auto;
+}
+
+/* ============================================================
+   COMPACT DASHBOARD & WIDGET ARCHITECTURE (REDUCED SIZE)
+   ============================================================ */
+
+.compact-dashboard {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.compact-widget {
+  background: rgba(20, 19, 14, 0.85); /* Matches opaque qualification card styling */
+  border: 1px solid #242118;
+  border-radius: 4px; /* Crisp geometric structure matching timeline node designs */
+  padding: 1.4rem; /* Downscaled compact spacing layout */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.4s ease, background 0.4s ease;
+}
+
+.compact-widget:hover {
+  background: rgba(234, 179, 8, 0.02);
+  border-color: #4a4229;
+}
+
+/* ── HUD Card Headers ── */
+.hud-widget__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #242118;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.2rem;
+}
+
+.hud-widget__title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+.hud-widget__status-pill {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  background: #1f1d16;
+  border: 1px solid #3a3421;
+  color: #eab308;
+}
+
+.fire-pill {
+  border-color: rgba(234, 179, 8, 0.4);
+  box-shadow: 0 0 10px rgba(234, 179, 8, 0.1);
+}
+
+/* ── Profile Header Section ── */
+.hud-widget__profile {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.2rem;
+}
+
+.github-avatar {
+  width: 46px; /* Compact scaled down width bounds */
+  height: 46px;
+  border-radius: 4px;
+  border: 1px solid #3a3421;
+  background: #1f1d16;
+}
+
+.hud-widget__user-meta h4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.hud-widget__user-meta p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin: 0.15rem 0 0 0;
+}
+
+/* ── Structural Sections ── */
+.hud-widget__section {
+  margin-top: 1.2rem;
+}
+
+.hud-widget__section h5 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #eab308;
+  margin-bottom: 0.8rem;
+}
+
+/* ============================================================
+   DATA VISUALIZATIONS & METRICS
+   ============================================================ */
+
+/* ── Language Progress Row Engines ── */
+.hud-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.65rem;
+}
+
+.hud-progress-lbl {
+  width: 85px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.hud-progress-bar-bg {
+  flex: 1;
+  height: 5px;
+  border-radius: 3px;
+  background: #1f1d16;
+  border: 1px solid #3a3421;
+  overflow: hidden;
+}
+
+.hud-progress-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.8s ease-out;
+}
+
+.gh-fill {
+  background: #eab308; /* Metallic gold load bar matching site accents */
+  box-shadow: 0 0 8px rgba(234, 179, 8, 0.3);
+}
+
+.hud-progress-pct {
+  width: 38px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #eab308;
+  text-align: right;
+}
+
+/* ── Embedded Data API Image Graphs ── */
+.github-graph,
+.leetcode-card {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid #242118;
+  background: #0d0c08;
+  margin-top: 0.5rem;
+}
+
+/* Filter integration styling layer for Vercel/Readme static asset images */
+.github-graph {
+  filter: saturate(0.85) contrast(1.05) brightness(0.95);
+}
+
+/* ── LeetCode Analytics Headers ── */
+.battle-main-metrics {
+  display: flex;
+  justify-content: space-between;
+  background: #1f1d16;
+  border: 1px solid #3a3421;
+  border-radius: 4px;
+  padding: 0.75rem 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.battle-metric {
+  display: flex;
+  flex-direction: column;
+}
+
+.battle-metric__lbl {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.battle-metric__val {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #eab308;
+  margin-top: 0.05rem;
+}
+
+/* ── Mini 3-Column Metrics Grid ── */
+.compact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.hud-mini-stat {
+  padding: 0.75rem 0.5rem;
+  border-radius: 4px;
+  text-align: center;
+  background: #1f1d16;
+  border: 1px solid #3a3421;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.hud-mini-stat:hover {
+  border-color: #eab308;
+  background: rgba(234, 179, 8, 0.04);
+}
+
+.hud-mini-stat__val {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hud-mini-stat__lbl {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-top: 0.15rem;
+}
+
+/* ============================================================
+   TACTICAL GLOBAL CODES & GRAPH DIFFICULTY STATES
+   ============================================================ */
+
+.text-neon-green {
+  color: #eab308 !important;
+  font-weight: 700;
+}
+
+.text-easy {
+  color: #86efac; /* Balanced Soft Jade matching timeline tags */
+}
+
+.text-medium {
+  color: #fef08a; /* Canary Yellow */
+}
+
+.text-hard {
+  color: #fca5a5; /* Crimson tint */
+}
+
+/* ============================================================
+   RESPONSIVE LAYOUT PIPELINE
+   ============================================================ */
+
+@media screen and (max-width: 1024px) {
+  .about {
+    padding: 5rem 2.5rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .compact-dashboard {
+    grid-template-columns: 1fr; /* Stack panels symmetrically on tablets and small viewports */
+    gap: 1.25rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .about {
+    padding: 4rem 1.25rem;
+  }
+
+  .compact-widget {
+    padding: 1.1rem;
+  }
+
+  .hud-widget__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .battle-main-metrics {
+    padding: 0.6rem 0.85rem;
+  }
+
+  .hud-mini-stat__val {
+    font-size: 1rem;
+  }
+}

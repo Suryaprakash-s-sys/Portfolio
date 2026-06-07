@@ -6,7 +6,7 @@ It showcases my skills, projects, and experience as a **Java Backend Developer**
 ---
 
 # 🚀 Live Demo
-👉 https://your-portfolio-link.com
+👉 https://suryaprakash-s-portfolio.vercel.app/
 
 ---
 
@@ -40,6 +40,9 @@ Passionate about building scalable backend systems and modern web applications.
 - 🌙 Modern UI design  
 
 ---
+
+# 🏗️ How the Portfolio is Built
+
              ┌──────────────────────────┐
              │      React + Vite        │
              │   (Frontend Framework)   │
@@ -83,4 +86,3 @@ Passionate about building scalable backend systems and modern web applications.
     │  Auto Build & Auto Deploy           │
     └─────────────────────────────────────┘
 
-# 🏗️ How the Portfolio is Built

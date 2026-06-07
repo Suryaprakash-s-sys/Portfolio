@@ -3,11 +3,54 @@ import "./Hero.css";
 import heroImg from "../assets/hero.png";
 
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { SiLeetcode, SiFiverr } from "react-icons/si";
+import { SiLeetcode, SiInstagram } from "react-icons/si";
 
 const Hero = () => {
   return (
     <section className="hero" id="hero">
+      {/* Fixed Left Column Social Sidebar */}
+      <div className="hero__socials">
+        <a
+          href="https://github.com/Suryaprakash-s-sys"
+          target="_blank"
+          rel="noreferrer"
+          className="hero__social-link"
+          aria-label="GitHub"
+        >
+          <FaGithub />
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/surya--prakash-s"
+          target="_blank"
+          rel="noreferrer"
+          className="hero__social-link"
+          aria-label="LinkedIn"
+        >
+          <FaLinkedin />
+        </a>
+
+        <a
+          href="https://leetcode.com/u/Surya_Prakash_25"
+          target="_blank"
+          rel="noreferrer"
+          className="hero__social-link"
+          aria-label="LeetCode"
+        >
+          <SiLeetcode />
+        </a>
+
+        <a
+          href="https://www.instagram.com/s_u_r_y_a_.25"
+          target="_blank"
+          rel="noreferrer"
+          className="hero__social-link"
+          aria-label="Instagram"
+        >
+          <SiInstagram />
+        </a>
+      </div>
+
       {/* Moon */}
       <div className="hero__moon"></div>
 
@@ -40,11 +83,11 @@ const Hero = () => {
             <span className="hero__eyebrow-text">Full Stack Developer</span>
           </div>
 
-          <h1 class="hero__title">
+          <h1 className="hero__title">
             Hi, I am <br />
-            <span class="hero__title-accent" data-text="Surya Prakash">
+            <span className="hero__title-accent" data-text="Surya Prakash">
               Surya Prakash
-              <div class="hero__title-accent-sparks"></div>
+              <div className="hero__title-accent-sparks"></div>
             </span>
           </h1>
 
@@ -52,8 +95,9 @@ const Hero = () => {
 
           <p className="hero__description">
             Java Backend Developer with experience in Spring Boot, MySQL, and
-            AI-powered applications. Built scalable web systems and deep
-            learning projects focused on real-world impact.
+            AWS. Skilled in building scalable RESTful web applications and
+            AI-powered solutions, with a focus on performance, cloud deployment,
+            and real-world problem solving.
           </p>
 
           {/* Buttons */}
@@ -64,63 +108,6 @@ const Hero = () => {
 
             <a href="/resume.pdf" className="hero__btn hero__btn--secondary">
               <span>Download CV</span>
-            </a>
-          </div>
-
-          {/* Socials */}
-          <div
-            style={{
-              display: "flex",
-              gap: "1rem",
-              marginTop: "1rem",
-            }}
-          >
-            <a
-              href="https://github.com/Suryaprakash-s-sys"
-              target="_blank"
-              rel="noreferrer"
-              className="hero__btn hero__btn--secondary"
-              style={{
-                padding: ".8rem",
-              }}
-            >
-              <FaGithub />
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/surya--prakash-s"
-              target="_blank"
-              rel="noreferrer"
-              className="hero__btn hero__btn--secondary"
-              style={{
-                padding: ".8rem",
-              }}
-            >
-              <FaLinkedin />
-            </a>
-
-            <a
-              href="https://leetcode.com/u/Surya_Prakash_25"
-              target="_blank"
-              rel="noreferrer"
-              className="hero__btn hero__btn--secondary"
-              style={{
-                padding: ".8rem",
-              }}
-            >
-              <SiLeetcode />
-            </a>
-
-            <a
-              href="https://www.fiverr.com/craftedbysurya"
-              target="_blank"
-              rel="noreferrer"
-              className="hero__btn hero__btn--secondary"
-              style={{
-                padding: ".8rem",
-              }}
-            >
-              <SiFiverr />
             </a>
           </div>
         </div>

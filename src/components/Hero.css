@@ -13,13 +13,13 @@
   justify-content: center;
   background: #0d0c08; /* Deep dark background matching the site theme */
   overflow: hidden;
-  padding: 0 4rem;
+  padding: 0 4rem 0 7rem; /* Left padding to make room for the desktop social sidebar */
   box-sizing: border-box;
 }
 
 /* ── Cinematic Background Layers ── */
 
-/* Dark vignette — deepens corners (FIXED: 100__ corrected to 100%) */
+/* Dark vignette — deepens corners */
 .hero::before {
   content: '';
   position: absolute;
@@ -46,6 +46,51 @@
   );
   z-index: 1;
   pointer-events: none;
+}
+
+/* ── Left Column Social Sidebar ── */
+.hero__socials {
+  position: fixed; /* Keeps it locked relative to the viewport like a premium frame */
+  left: 2.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  z-index: 10;
+  opacity: 0;
+  animation: cinematicFadeUp 1s ease 1.5s forwards; /* Triggers smoothly mid-intro */
+}
+
+/* Vertical structural line balancing the design */
+.hero__socials::before {
+  content: '';
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, rgba(234, 179, 8, 0.3));
+}
+
+.hero__socials::after {
+  content: '';
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to top, transparent, rgba(234, 179, 8, 0.3));
+}
+
+.hero__social-link {
+  color: #94a3b8;
+  font-size: 1.25rem;
+  transition: color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.hero__social-link:hover {
+  color: #eab308;
+  transform: scale(1.15) translateX(2px); /* Slight pop toward the right content */
 }
 
 /* ── Moon — golden glowing orb behind profile ── */
@@ -127,7 +172,6 @@
   animation: smokeDrift linear infinite;
 }
 
-/* Smoke configurations... */
 .hero__smoke-particle:nth-child(1) { left: 10%; width: 200px; height: 200px; animation-duration: 18s; animation-delay: 0s; }
 .hero__smoke-particle:nth-child(2) { left: 30%; width: 280px; height: 280px; animation-duration: 22s; animation-delay: -4s; }
 .hero__smoke-particle:nth-child(3) { left: 55%; width: 160px; height: 160px; animation-duration: 16s; animation-delay: -8s; }
@@ -155,12 +199,11 @@
   top: -20px;
   width: 6px;
   height: 6px;
-  background: rgba(234, 179, 8, 0.18); /* Converted to matching amber yellow flakes */
+  background: rgba(234, 179, 8, 0.18);
   border-radius: 0 50% 50% 50%;
   animation: petalFall linear infinite;
 }
 
-/* Petal delay distributions... */
 .hero__petal:nth-child(1)  { left: 8%;  animation-duration: 12s; animation-delay: 0s;   width: 5px;  height: 5px; }
 .hero__petal:nth-child(2)  { left: 18%; animation-duration: 16s; animation-delay: -3s;  width: 4px;  height: 4px; }
 .hero__petal:nth-child(3)  { left: 28%; animation-duration: 14s; animation-delay: -7s;  width: 6px;  height: 6px; }
@@ -243,7 +286,6 @@
   position: relative;
 }
 
-/* Subtle glowing layout bloom behind the principal name */
 .hero__title-accent::after {
   content: attr(data-text);
   position: absolute;
@@ -303,7 +345,6 @@
   transition: color 0.3s ease;
 }
 
-/* Primary — gold fill button box design */
 .hero__btn--primary {
   background: #eab308;
   color: #0d0c08;
@@ -318,15 +359,9 @@
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.hero__btn--primary:hover::before {
-  transform: translateX(0);
-}
+.hero__btn--primary:hover::before { transform: translateX(0); }
+.hero__btn--primary:hover { color: #eab308; }
 
-.hero__btn--primary:hover {
-  color: #eab308;
-}
-
-/* Secondary — outline button box design */
 .hero__btn--secondary {
   background: transparent;
   color: #94a3b8;
@@ -343,25 +378,14 @@
   transition: transform 0.3s ease;
 }
 
-.hero__btn--secondary:hover::before {
-  transform: scaleX(1);
-}
-
-.hero__btn--secondary:hover {
-  color: #ffffff;
-  border-color: #eab308;
-}
-
-.hero__btn span {
-  position: relative;
-  z-index: 1;
-}
+.hero__btn--secondary:hover::before { transform: scaleX(1); }
+.hero__btn--secondary:hover { color: #ffffff; border-color: #eab308; }
+.hero__btn span { position: relative; z-index: 1; }
 
 /* ============================================================
    HERO IMAGE — MODERN PREMIUM CARD STYLE
    ============================================================ */
 
-/* ── Image Column ── */
 .hero__image-wrap {
   position: relative;
   display: flex;
@@ -371,7 +395,6 @@
   animation: cinematicFadeUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
 }
 
-/* ── Main Image Frame ── */
 .hero__image-frame {
   position: relative;
   width: 420px;
@@ -382,17 +405,11 @@
   border: 1px solid #242118;
   backdrop-filter: blur(8px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(234, 179, 8, 0.02);
-  
-  /* 
-     MODIFIED: Run the dramatic 3s blurred zoom-out first. 
-     Then, start the looping float animation exactly at the 3s mark.
-  */
   animation: 
     premiumIntro 3s cubic-bezier(0.16, 1, 0.3, 1) forwards,
     floatImage 6s ease-in-out infinite 3s;
 }
 
-/* ── Gradient Border Glow ── */
 .hero__image-frame::before {
   content: '';
   position: absolute;
@@ -412,7 +429,6 @@
   z-index: 3;
 }
 
-/* ── Soft Top Light Overlay ── */
 .hero__image-frame::after {
   content: '';
   position: absolute;
@@ -423,11 +439,8 @@
   z-index: 2;
 }
 
-.hero__image-corner {
-  display: none;
-}
+.hero__image-corner { display: none; }
 
-/* ── Actual Showcase Image ── */
 .hero__image {
   width: 100%;
   height: 100%;
@@ -445,7 +458,6 @@
   filter: contrast(1.05) brightness(1);
 }
 
-/* ── Premium Floating Shadow ── */
 .hero__image-shadow {
   position: absolute;
   bottom: -35px;
@@ -455,38 +467,7 @@
   height: 45px;
   background: radial-gradient(ellipse, rgba(0, 0, 0, 0.55) 0%, transparent 70%);
   filter: blur(14px);
-  /* Delayed by 3s to stay synchronized with the image frame intro landing */
   animation: floatShadow 6s ease-in-out infinite 3s;
-}
-
-/* ── Decorative Floating Accent Badge ── */
-.hero__image-accent {
-  position: absolute;
-  top: -14px;
-  right: -14px;
-  width: 70px;
-  height: 70px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba(234, 179, 8, 0.18), rgba(234, 179, 8, 0.04));
-  border: 1px solid rgba(234, 179, 8, 0.2);
-  backdrop-filter: blur(8px);
-  z-index: 5;
-  /* Delayed by 3s to stay synchronized with the image frame intro landing */
-  animation: floatAccent 5s ease-in-out infinite 3s;
-}
-
-/* ── Tiny Glow Orb ── */
-.hero__image-accent::before {
-  content: '';
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: #eab308;
-  box-shadow: 0 0 10px #eab308, 0 0 25px rgba(234, 179, 8, 0.6);
 }
 
 /* ── Scroll Indicator ── */
@@ -540,105 +521,119 @@
   animation: kanjiFloat 12s ease-in-out infinite;
 }
 
-.hero__kanji--1 {
-  top: 10%;
-  left: 2%;
-  animation-delay: 0s;
-}
-
-.hero__kanji--2 {
-  bottom: 10%;
-  right: 2%;
-  animation-delay: -4s;
-  font-size: 5rem;
-  color: rgba(245, 158, 11, 0.025);
-}
+.hero__kanji--1 { top: 10%; left: 2%; animation-delay: 0s; }
+.hero__kanji--2 { bottom: 10%; right: 2%; animation-delay: -4s; font-size: 5rem; color: rgba(245, 158, 11, 0.025); }
 
 /* ============================================================
    CORE ANIMATION TIMERS & KEYFRAMES
    ============================================================ */
 
-/* ── MODIFIED: Cinematic Landing Blur & Zoom Out ── */
 @keyframes premiumIntro {
-  0% {
-    filter: blur(40px);
-    transform: scale(1.4) translateY(20px);
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  100% {
-    filter: blur(0px);
-    transform: scale(1) translateY(0px);
-    opacity: 1;
-  }
+  0% { filter: blur(40px); transform: scale(1.4) translateY(20px); opacity: 0; }
+  15% { opacity: 1; }
+  100% { filter: blur(0px); transform: scale(1) translateY(0px); opacity: 1; }
 }
-
-@keyframes floatImage {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-18px); }
-}
-
-@keyframes floatShadow {
-  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.5; }
-  50%       { transform: translateX(-50%) scale(0.85); opacity: 0.3; }
-}
-
-@keyframes floatAccent {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-8px); }
-}
-
-@keyframes cinematicFadeUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slashReveal {
-  from { opacity: 0; transform: translateX(-20px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes lineSlash {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
-
-@keyframes kanjiFloat {
-  0%, 100% { transform: translateY(0) rotate(-2deg); }
-  50%       { transform: translateY(-20px) rotate(2deg); }
-}
+@keyframes floatImage { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-18px); } }
+@keyframes floatShadow { 0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.5; } 50% { transform: translateX(-50%) scale(0.85); opacity: 0.3; } }
+@keyframes cinematicFadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slashReveal { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes lineSlash { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes kanjiFloat { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-20px) rotate(2deg); } }
 
 /* ============================================================
-   RESPONSIVE VIEWPORTS
+   RESPONSIVE VIEWPORTS (PERFECT MOBILE RE-ALIGNMENT)
    ============================================================ */
 @media (max-width: 1024px) {
-  .hero { padding: 0 2.5rem; }
+  .hero { padding: 0 2.5rem 0 5.5rem; }
   .hero__inner { gap: 3rem; }
   .hero__image-frame { width: 340px; height: 440px; }
+  .hero__socials { left: 1.5rem; }
 }
 
 @media (max-width: 768px) {
-  .hero { padding: 0 1.5rem; }
+  .hero { 
+    padding: 5rem 1.5rem 6rem 1.5rem; /* Balanced top and bottom breathing room */
+    flex-direction: column; 
+    align-items: center;
+    justify-content: flex-start;
+    height: auto;
+    min-height: 100vh;
+  }
+
   .hero__inner {
     grid-template-columns: 1fr;
     text-align: center;
-    padding-top: 7rem;
-    padding-bottom: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 0;
     gap: 3rem;
+    display: flex;
+    flex-direction: column;
   }
-  .hero__image-wrap { order: -1; }
-  .hero__image-frame { width: 280px; height: 360px; border-radius: 26px; }
-  .hero__image-accent { width: 56px; height: 56px; }
+
+  /* Image comes first inside column layout */
+  .hero__image-wrap { 
+    order: 1; 
+    width: 100%;
+  }
+  
+  .hero__image-frame { 
+    width: 280px; 
+    height: 360px; 
+    border-radius: 26px; 
+    margin: 0 auto;
+  }
+
+  /* Content elements come second */
+  .hero__content {
+    order: 2;
+    align-items: center; /* Center-aligns structural elements (text, actions) */
+    width: 100%;
+    gap: 1.5rem;
+  }
+
   .hero__eyebrow { justify-content: center; }
-  .hero__description { margin: 0 auto; }
-  .hero__actions { justify-content: center; }
-  .hero__moon { right: 5%; width: 180px; height: 180px; }
+  .hero__description { margin: 0 auto; text-align: center; }
+  .hero__actions { justify-content: center; width: 100%; }
+
+  /* Social block aligns smoothly at the bottom of the section card contents */
+  .hero__socials {
+    position: relative;
+    order: 3;
+    left: auto;
+    top: auto;
+    transform: none;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    width: 100%;
+    padding-bottom: 2rem;
+  }
+
+  .hero__socials::before,
+  .hero__socials::after {
+    display: none; /* Hide the vertical desktop lines */
+  }
+
+  .hero__moon { 
+    right: 5%; 
+    top: 5%;
+    width: 180px; 
+    height: 180px; 
+  }
+  
+  /* Prevent scroll bar overlaps */
+  .hero__scroll {
+    display: none; 
+  }
 }
 
 @media (max-width: 480px) {
-  .hero__btn { padding: 0.8rem 1.4rem; font-size: 0.75rem; }
-  .hero__image-frame { width: 230px; height: 300px; border-radius: 22px; }
-  .hero__image-accent { width: 48px; height: 48px; top: -10px; right: -10px; }
+  .hero { padding: 4rem 1rem; }
+  .hero__title { font-size: 2.5rem; }
+  .hero__btn { padding: 0.8rem 1.4rem; font-size: 0.75rem; width: 100%; justify-content: center; }
+  .hero__actions { flex-direction: column; gap: 1rem; width: 100%; }
+  .hero__image-frame { width: 240px; height: 310px; border-radius: 22px; }
+  .hero__socials { gap: 1.5rem; }
+  .hero__kanji { font-size: 4rem; }
 }
